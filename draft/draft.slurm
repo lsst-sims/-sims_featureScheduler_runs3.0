@@ -56,7 +56,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/draft
 module load parallel-20170722
 
 # python generate_grid.py
-cat slurm.sh | parallel -j 28
+cat draft.sh | parallel -j 28
 
 generate_ss 
 cat ss_script.sh > maf.sh
