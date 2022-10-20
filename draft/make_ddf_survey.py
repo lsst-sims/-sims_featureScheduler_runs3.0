@@ -25,7 +25,7 @@ def ddf_slopes(ddf_name, raw_obs, night_season):
     # so a 25.8 sequences is a 0.1% season
     # COSMOS is going to be 0.7% for 3 years, then 0.175 for the rest.
 
-    ss = 40  # standard season, was 45
+    ss = 30  # standard season, was 45
 
     if (ddf_name == 'ELAISS1') | (ddf_name == 'XMM_LSS') | (ddf_name == 'ECDFS'):
         # Dict with keys for each season and values of the number of sequences
