@@ -702,9 +702,9 @@ if __name__ == "__main__":
     sky = Sky_area_generator_galplane(nside=nside, smc_radius=4, lmc_radius=6)
     footprints_hp_array, labels = sky.return_maps(
         bulge_ratios={"u": 0.23, "g": 0.43, "r": 1.22, "i": 1.17, "z": 0.82, "y": 0.65},
-        nes_ratios={"g": 0.28*scale, "r": 0.4*scale,  "i": 0.4*scale, "z": 0.28*scale},
-        dusty_plane_ratios={"u": 0.08, "g": 0.12, "r": 0.31, "i": 0.31,  "z": 0.28, "y": 0.22})
-    
+        nes_ratios={"g": 0.28*scale, "r": 0.4*scale, "i": 0.4*scale, "z": 0.28*scale},
+        dusty_plane_ratios={"u": 0.08, "g": 0.12, "r": 0.31, "i": 0.31, "z": 0.28, "y": 0.22})
+
     wfd_indx = np.where((labels == 'lowdust') | (labels == 'LMC_SMC') | (labels == 'virgo'))[0]
     wfd_footprint = footprints_hp_array['r']*0
     wfd_footprint[wfd_indx] = 1
