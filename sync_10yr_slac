@@ -1,0 +1,5 @@
+#!/bin/bash
+
+## copy just 10 year databases. exclude everything, then include all directories and all 10 year db files
+
+rsync -avzv --progress --include="*/" --include="*10yrs.db" --exclude="*" * s3dflogin.slac.stanford.edu:"/sdf/group/rubin/web_data/sim-data/sims_featureScheduler_runs3.0/"
