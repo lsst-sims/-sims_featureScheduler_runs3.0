@@ -2,7 +2,7 @@
 
 ## Job Name
 
-#SBATCH --job-name=maf3.0
+#SBATCH --job-name=maf_ss3.0
 
 ## Allocation Definition
 
@@ -14,12 +14,12 @@
 
 ## Nodes
 
-#SBATCH --nodes=1
+#SBATCH --nodes=4
 #SBATCH --ntasks-per-node=28
 
 ## Walltime (hours:min:sec) Do not specify a walltime substantially more than your job needs.
 
-#SBATCH --time=2-12:00:00
+#SBATCH --time=4-48:00:00
 
 ## Memory per node. It is important to specify the memory since the default memory is very small.
 
@@ -56,17 +56,21 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/maf
 find ../ -type f \( -iname "*10yrs.db" ! -path "*technical*" \) | xargs -I'{}' ln -s '{}' .
 
 
-rm maf.sh
-ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
-ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" >> maf.sh
-ls *10yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
-ls *10yrs.db | xargs -I'{}' echo "metadata_dir --db '{}'" >> maf.sh
+rm maf_ss.sh
+# run the solar system etc
+generate_ss
+cat ss_script.sh >> maf_ss.sh
+generate_ss --pop vatiras_granvik_10k
+cat ss_script.sh >> maf_ss.sh
 
 ## run all the baseline commands in parallel
 module load parallel-20170722
-#scontrol show hostnames > list_of_nodes
-#cpu_count=28
+scontrol show hostnames > list_of_nodes
+cpu_count=28
 
-#cat maf.sh | parallel --sshloginfile list_of_nodes -j $cpu_count
+preamble='cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/maf  ; source setup.sh ; '
 
-cat maf.sh | parallel -j 28
+cat maf_ss.sh | xargs -I'{}' echo $preamble '{}' > maf_ss_final.sh
+
+
+cat maf_ss_final.sh | parallel --sshloginfile list_of_nodes -j $cpu_count
