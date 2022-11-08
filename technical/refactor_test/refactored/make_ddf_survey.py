@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pylab as plt
-from rubin_sim.utils import calcSeason, ddf_locations
+from rubin_sim.utils import calc_season, ddf_locations
 from rubin_sim.scheduler.utils import scheduled_observation
 import os
 import argparse
@@ -176,7 +176,7 @@ def optimize_ddf_times(ddf_name, ddf_RA, ddf_grid,
     unights, indx = np.unique(night, return_index=True)
     night_mjd = ddf_grid['mjd'][indx]
     # The season of each night
-    night_season = calcSeason(ddf_RA, night_mjd)
+    night_season = calc_season(ddf_RA, night_mjd)
 
     raw_obs = np.ones(unights.size)
     # take out the ones that are out of season
