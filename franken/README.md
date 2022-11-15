@@ -8,6 +8,7 @@ Things we're going for
 * fix small rolling scale bug
 * fix the twilight NEO survey
 
+
 Other potential changes:
 * fiddle with the supress repeat weight?
 * more DDF fiddles for overall time?
