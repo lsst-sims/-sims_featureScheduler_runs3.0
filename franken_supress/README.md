@@ -1,4 +1,4 @@
-A combination of things learned and bugs fixed to try and get to a working 3.0
+Similar to franken, but varying the weight of the supress revisit
 
 Things we're going for
 
@@ -7,10 +7,8 @@ Things we're going for
 * 4 rolling seasons, but first year still uniform. Flipping the order of the rolling bands for trojans
 * fix small rolling scale bug
 * fix the twilight NEO survey
+* vary the weight on supress revisits
 
+---------
 
-Other potential changes:
-* fiddle with the supress repeat weight?
-* more DDF fiddles for overall time?
-* turn down bulge and plane slightly?
-* balance the twilight NEO filters a bit?
+The franken_supress_fp runs should be the same, but include some fiddles to footprint filter balances.
