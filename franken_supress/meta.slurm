@@ -55,9 +55,6 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/franken_supress
 ## run all the baseline commands in parallel
 module load parallel-20170722
 
-# python generate_grid.py
-cat franken_s.sh | parallel -j 28
-
 
 ls *10yrs.db | xargs -I'{}' echo "metadata_dir --db '{}'" > meta.sh
 
