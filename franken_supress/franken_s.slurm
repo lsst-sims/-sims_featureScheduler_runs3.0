@@ -58,13 +58,15 @@ module load parallel-20170722
 # python generate_grid.py
 cat franken_s.sh | parallel -j 28
 
-generate_ss 
-cat ss_script.sh > maf.sh
-generate_ss --pop vatiras_granvik_10k
-cat ss_script.sh >> maf.sh
 
-ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" >> maf.sh
+ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
 ls *10yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
+
+
+generate_ss 
+cat ss_script.sh >> maf.sh
+generate_ss --pop vatiras_granvik_10k
+cat ss_script.sh >> maf.sh
 
 cat maf.sh | parallel -j 28
