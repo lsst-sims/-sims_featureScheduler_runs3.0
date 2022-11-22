@@ -2,7 +2,7 @@
 
 ## Job Name
 
-#SBATCH --job-name=franken_s2.99
+#SBATCH --job-name=draft3
 
 ## Allocation Definition
 
