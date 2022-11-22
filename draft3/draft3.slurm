@@ -56,7 +56,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/draft3
 module load parallel-20170722
 
 # python generate_grid.py
-cat draft3.slurm | parallel -j 28
+cat draft3.sh | parallel -j 28
 
 
 ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
