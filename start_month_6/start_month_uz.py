@@ -1,0 +1,1 @@
+../start_month/start_month_uz.py

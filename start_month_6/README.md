@@ -1,0 +1,1 @@
+Fixing a bug that killed the 6-month offset
