@@ -39,8 +39,9 @@ def ddf_slopes(ddf_name, raw_obs, night_season):
         for season in np.unique(round_season):
             in_season = np.where(round_season == season)
             cumulative = np.cumsum(raw_obs[in_season])
-            cumulative = cumulative/cumulative.max() * season_vals[season]
-            cumulative_desired[in_season] = cumulative + np.max(cumulative_desired)
+            if cumulative.max() > 0:
+                cumulative = cumulative/cumulative.max() * season_vals[season]
+                cumulative_desired[in_season] = cumulative + np.max(cumulative_desired)
 
     if ddf_name == 'EDFS_a':
         season_vals = {0: 10, 1: ss, 2: ss, 3: ss, 4: ss, 5: ss,
@@ -52,8 +53,9 @@ def ddf_slopes(ddf_name, raw_obs, night_season):
         for season in np.unique(round_season):
             in_season = np.where(round_season == season)
             cumulative = np.cumsum(raw_obs[in_season])
-            cumulative = cumulative/cumulative.max() * season_vals[season]
-            cumulative_desired[in_season] = cumulative + np.max(cumulative_desired)
+            if cumulative.max() > 0:
+                cumulative = cumulative/cumulative.max() * season_vals[season]
+                cumulative_desired[in_season] = cumulative + np.max(cumulative_desired)
 
     if ddf_name == 'COSMOS':
         # looks like COSMOS has no in-season time for 10 at the current start mjd.
