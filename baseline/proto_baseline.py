@@ -751,7 +751,8 @@ if __name__ == "__main__":
 
     ddf_season_frac = args.ddf_season_frac
 
-    mjd_start = survey_start_mjd()
+    # Set the start of the survey to Jun 1, 2024
+    mjd_start = 60462 
 
     nside = 32
     per_night = True  # Dither DDF per night
