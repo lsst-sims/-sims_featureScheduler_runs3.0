@@ -56,7 +56,7 @@ cd /gscratch/scrubbed/yoachim/sims_featureScheduler_runs3.0/baseline
 module load parallel-20170722
 
 # python generate_grid.py
-python baseline.py
+python proto_baseline.py
 
 ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
