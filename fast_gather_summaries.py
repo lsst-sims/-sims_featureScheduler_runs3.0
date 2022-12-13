@@ -32,7 +32,7 @@ def fast_gather(dirname='.', dbfilename='resultsDb_sqlite.db'):
 
     # querry to grab all the summary stats
     sql_q = 'select metrics.metricname, metrics.metricInfoLabel, summarystats.summaryName, summarystats.summaryValue '
-    sql_q += 'FROM summarystats INNER JOIN metrics ON metrics.metricId=summarystats.metricId'
+    sql_q += 'FROM summarystats INNER JOIN metrics ON metrics.metric_id=summarystats.metric_id'
 
     rows = []
 
