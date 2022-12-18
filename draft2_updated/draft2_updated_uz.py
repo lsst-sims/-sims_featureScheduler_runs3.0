@@ -659,7 +659,7 @@ if __name__ == "__main__":
     footprints = make_rolling_footprints(fp_hp=footprints_hp, mjd_start=conditions.mjd_start,
                                          sun_ra_start=conditions.sun_ra_start, nslice=nslice,
                                          scale=rolling_scale,
-                                         nside=nside, wfd_indx=wfd_indx, order_roll=1)
+                                         nside=nside, wfd_indx=wfd_indx, order_roll=1, n_cycles=4)
 
     gaps_night_pattern = [True] + [False]*nights_off
 
