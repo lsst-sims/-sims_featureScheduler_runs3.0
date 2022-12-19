@@ -58,6 +58,8 @@ module load parallel-20170722
 # python generate_grid.py
 # python proto_baseline.py
 
+python draft2_rw0.9_uz.py
+
 ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
 ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
 ls *10yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
