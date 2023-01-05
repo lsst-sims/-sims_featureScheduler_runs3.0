@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --partition=shared
+#SBATCH --partition=roma
 #
 #SBATCH --job-name=sched_baseline
 #SBATCH --output=output-%j.txt
