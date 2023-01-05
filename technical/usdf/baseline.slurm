@@ -28,9 +28,9 @@ cd /sdf/group/rubin/user/yoachim/git_repos/sims_featureScheduler_runs3.0/technic
 
 python draft2_updated_uzy.py --survey_length 20
 
-ls *10yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
-ls *10yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
-ls *10yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
+ls *0yrs.db | xargs -I'{}' echo "glance_dir --db '{}'" > maf.sh
+ls *0yrs.db | xargs -I'{}' echo "scimaf_dir --db '{}'" >> maf.sh
+ls *0yrs.db | xargs -I'{}' echo "ddf_dir --db '{}'" >> maf.sh
 
 cat maf.sh | parallel -j 3
 
