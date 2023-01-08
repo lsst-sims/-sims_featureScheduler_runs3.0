@@ -93,8 +93,6 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
         },
         euclid_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
     ):
-
-
         """
         Parameters:
         various_ratios : `dict`
