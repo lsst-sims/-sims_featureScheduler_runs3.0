@@ -34,8 +34,8 @@ iers.conf.auto_download = False
 class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
 
     def add_euclid_overlap(self, filter_ratios, label='euclid_overlap',
-                       contour_file='EWS.SGC.Mainland.ROI.2022.RADEC.txt',
-                       south_limit=-50.):
+                           contour_file='EWS.SGC.Mainland.ROI.2022.RADEC.txt',
+                           south_limit=-50.):
 
         names = ['RA', 'dec']
         types = [float, float]
@@ -67,17 +67,34 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
         for filtername in filter_ratios:
             self.healmaps[filtername][indx] = filter_ratios[filtername]
 
-    def return_maps(
-        self,
-        magellenic_clouds_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
-        scp_ratios={"u": 0.1, "g": 0.1, "r": 0.1, "i": 0.1, "z": 0.1, "y": 0.1},
-        nes_ratios={"g": 0.28, "r": 0.4, "i": 0.4, "z": 0.28},
-        dusty_plane_ratios={"u": 0.1, "g": 0.28, "r": 0.28, "i": 0.28, "z": 0.28, "y": 0.1},
+    def return_maps(self,
+        lmc_ra=89.0,
+        lmc_dec=-70,
+        magellenic_clouds_ratios={
+            "u": 0.32,
+            "g": 0.4,
+            "r": 1.0,
+            "i": 1.0,
+            "z": 0.9,
+            "y": 0.9,
+        },
         low_dust_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
-        bulge_ratios={"u": 0.18, "g": 1.0, "r": 1.05, "i": 1.05, "z": 1.0, "y": 0.23},
         virgo_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
-        euclid_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9}
+        scp_ratios={"u": 0.08, "g": 0.15, "r": 0.08, "i": 0.15, "z": 0.08, "y": 0.06},
+        nes_ratios={"g": 0.23, "r": 0.33, "i": 0.33, "z": 0.23},
+        bulge_ratios={"u": 0.19, "g": 0.57, "r": 1.15, "i": 1.05, "z": 0.78, "y": 0.57},
+        dusty_plane_ratios={
+            "u": 0.07,
+            "g": 0.13,
+            "r": 0.28,
+            "i": 0.28,
+            "z": 0.25,
+            "y": 0.18,
+        },
+        euclid_ratios={"u": 0.32, "g": 0.4, "r": 1.0, "i": 1.0, "z": 0.9, "y": 0.9},
     ):
+
+
         """
         Parameters:
         various_ratios : `dict`
@@ -103,10 +120,12 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
 
         # Note, order here matters. Once a HEALpix is set and labled, subsequent add_ methods
         # will not override that pixel.
-        self.add_magellanic_clouds(magellenic_clouds_ratios)
+        self.add_magellanic_clouds(
+            magellenic_clouds_ratios, lmc_ra=lmc_ra, lmc_dec=lmc_dec
+        )
         self.add_lowdust_wfd(low_dust_ratios)
         self.add_virgo_cluster(virgo_ratios)
-        self.add_bulge(bulge_ratios)
+        self.add_bulgy(bulge_ratios)
         self.add_nes(nes_ratios)
         self.add_dusty_plane(dusty_plane_ratios)
         self.add_euclid_overlap(euclid_ratios)
