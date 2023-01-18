@@ -31,7 +31,7 @@ def fast_gather(dirname='.', dbfilename='resultsDb_sqlite.db'):
             run_names.append(construct_runname(dname))
 
     # querry to grab all the summary stats
-    sql_q = 'select metrics.metricname, metrics.metricInfoLabel, summarystats.summaryName, summarystats.summaryValue '
+    sql_q = 'select metrics.metric_name, metrics.metric_info_label, summarystats.summary_name, summarystats.summary_value '
     sql_q += 'FROM summarystats INNER JOIN metrics ON metrics.metric_id=summarystats.metric_id'
 
     rows = []
@@ -41,14 +41,14 @@ def fast_gather(dirname='.', dbfilename='resultsDb_sqlite.db'):
         temp_df = pd.read_sql(sql_q, con)
         con.close()
         
-        spaces = np.char.array([' ']*np.size(temp_df['metricName'].values))
-        s1 = np.char.array(temp_df['metricName'].values.tolist())
-        s2 = np.char.array(temp_df['metricInfoLabel'].values.tolist())
-        s3 = np.char.array(temp_df['summaryName'].values.tolist())
+        spaces = np.char.array([' ']*np.size(temp_df['metric_name'].values))
+        s1 = np.char.array(temp_df['metric_name'].values.tolist())
+        s2 = np.char.array(temp_df['metric_info_label'].values.tolist())
+        s3 = np.char.array(temp_df['summary_name'].values.tolist())
         col_names = s1 + spaces + s2 + spaces + s3
 
         # Make a DataFrame row
-        row = pd.DataFrame(temp_df['summaryValue'].values.reshape([1, temp_df['summaryValue'].values.size]),
+        row = pd.DataFrame(temp_df['summary_value'].values.reshape([1, temp_df['summary_value'].values.size]),
                            columns=col_names, index=[row_name])
         rows.append(row)
 

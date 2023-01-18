@@ -5,9 +5,7 @@ import matplotlib.pylab as plt
 import healpy as hp
 from rubin_sim.scheduler.model_observatory import ModelObservatory
 from rubin_sim.scheduler.schedulers import CoreScheduler, FilterSchedUzy
-from rubin_sim.scheduler.utils import (SkyAreaGeneratorGalplane, ConstantFootprint, 
-                                       Footprint, StepSlopes,
-                                       slice_quad_galactic_cut, Footprints, IntRounded,
+from rubin_sim.scheduler.utils import (SkyAreaGeneratorGalplane, ConstantFootprint,
                                        make_rolling_footprints)
 import rubin_sim.scheduler.basis_functions as bf
 from rubin_sim.scheduler.surveys import (GreedySurvey, BlobSurvey, ScriptedSurvey)
@@ -42,27 +40,14 @@ class EuclidOverlapFootprint(SkyAreaGeneratorGalplane):
         euclid_contours = np.genfromtxt('EWS.SGC.Mainland.ROI.2022.RADEC.txt',
                                         dtype=list(zip(names, types)))
 
-        #euclid_contours['RA'][np.where(euclid_contours['RA'] < 0)] += 180
-
         wrap_ra = self.ra + 0
         wrap_ra[np.where(wrap_ra > 180)] -= 360
 
-        #sb = euclid_contours[np.where(euclid_contours['dec'] < south_limit)]
-        # technically maybe should project this and then interpolate? whatever
-        #ra_cen = 0
-        #dec_cen = south_limit
-
-        #contour_x, contour_y = gnomonic_project_toxy(euclid_contours['RA'],
-        #                                             euclid_contours['dec'], ra_cen, dec_cen)
-
-        #map_x, map_y = gnomonic_project_toxy(self.ra, self.dec, ra_cen, dec_cen)
-
         polygon = Polygon(zip(euclid_contours['RA'], euclid_contours['dec']))
-        in_poly = [polygon.contains(Point(x, y)) for x,y in zip(wrap_ra, self.dec)]
+        in_poly = [polygon.contains(Point(x, y)) for x, y in zip(wrap_ra, self.dec)]
 
         # find which map points are inside the contour
-
-        indx = np.where((np.array(in_poly) == True ) & (self.pix_labels == "")) #& (self.dec < south_limit)
+        indx = np.where((np.array(in_poly) == True & (self.pix_labels == "")))
         self.pix_labels[indx] = label
         for filtername in filter_ratios:
             self.healmaps[filtername][indx] = filter_ratios[filtername]
