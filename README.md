@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/539142669.svg)](https://zenodo.org/doi/10.5281/zenodo.10126912)
+
 # sims_featureScheduler_runs3.0
 Rubin Observatory survey simulation. 
 
